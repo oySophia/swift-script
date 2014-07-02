@@ -1,3 +1,5 @@
+##swift-script
+
 This is my first try on the shell-script language, maybe not good, but i like to regard it as a long run.
 
 This is a script for the swift to be installed on the ubuntu-series(using a loopback device for storage, and without setting up rsyslog for individual logging), and it is supposed to run as the root.
