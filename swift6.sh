@@ -1,25 +1,5 @@
 #!/bin/sh
 
-echo "*****************************setting up scripts for running swift********************"
-echo "****************************resetting the environment*********************************"
-cd $HOME/swift/doc
-cp -r saio/bin $HOME/bin
-cd -
-chmod +x $HOME/bin/*
-
-echo "**********************edit the home/bin/resetswift************************************"
-sed -i "s/dev\/sdb1/srv\/swift-disk/" $HOME/bin/resetswift
-sed -i "/find \/var\/log\/swift/d" $HOME/bin/resetswift
-
-echo "************install the sample configuration file for running tests*************************"
-cp $HOME/swift/test/sample.conf /etc/swift/test.conf
-
-echo "*************adding an environment variable********************************************"
-echo "export SWIFT_TEST_CONFIG_FILE=/etc/swift/test.conf" >> $HOME/.bashrc
-echo "************make sure the path includes the bin directory******************************"
-echo "export PATH=${PATH}:$HOME/bin" >> $HOME/.bashrc
-. $HOME/.bashrc
-
 echo "************************************************************************************
 *************************************construct the initial rings*************************
 and the outputs are like that:
@@ -32,5 +12,8 @@ remakerings
 echo "************verify the unit tests run************************************************"
 $HOME/swift/.unittests
 
+echo "************start the main swift daemon processes**********************************************************"
+startmain
+
 #you should run the 10-th step according to the illustration
-echo "********you should run the 10-th step according to the illustrations**************************"
+echo "********you should run the 11-th step according to the illustrations**************************"

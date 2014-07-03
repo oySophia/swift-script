@@ -1,0 +1,60 @@
+1. 创建rings:(the excutive file in the /home/sophia/bin)
+./remarkerings
+
+2.执行功能单元测试:(this file's path is /home/sophia/swift)
+./.unittests
+
+3.运行swift，出现“Unable to increase file descriptor limit.  Running as non-root?”警告为正常现象，不必理会:
+./startmain------------to start the proxyserver and other accountservers objectservers and containerservers.
+
+4.if you can get much help by the command: swift --help.
+
+5.检查账户:
+curl -v -H 'X-Auth-Token: <token-from-x-auth-token-above>'  <url-from-x-storage-url-above>
+
+6.检查Swift工作:
+swift -A http://127.0.0.1:8080/auth/v1.0 -U test:tester -K testing stat
+-----------such step will check the swift's working types and ways, and also containers, objects and bytes are given.
+
+7.创建container，创建一个名称为container_test的container（目录），注意使用当前的token:
+curl -X PUT -D -  -H "X-Auth_Token:AUTH_tk6474e5ee0cb04832b9d2a168e1a164d8" http://127.0.0.1:8080/v1/AUTH_test/container_test
+
+8.查看test用户的container列表:
+swift -A http://127.0.0.1:8080/auth/v1.0 -U test:tester -K testing list
+----------and you will get the result of "container_test". what's more, u can create more than one containers.
+
+9. 上传Object（文件），上传hello文件到container_test目录中:
+ swift -A http://127.0.0.1:8080/auth/v1.0 -U test:tester -K testing upload container_test /root/hello
+------------here u upload the file--hello in /root/ to the former container container_test.
+
+10.查看目录中的内容，查看container_test目录中的内容:
+swift -A http://127.0.0.1:8080/auth/v1.0 -U test:tester -K testing list container_test
+------------if u want to see such certain container's contents, u just have to certainly give out the container name. In the end, u can get "root/hello"
+
+11.下载Object（文件）下载container_test下的object:
+swift -A http://127.0.0.1:8080/auth/v1.0 -U test:tester -K testing download  container_test
+-----------such work will actually download the object file under the current file path.
+
+Attentions:::将container_test目录内的所有内容下载到目前所在目录。注意：如果上传文件的时候，有嵌套目录，则上传到Swift上后，也是以嵌套目录的形式存在，下载后，会在当前目录创建一样的嵌套目录。
+
+12.to delete a container of the swift:
+swift -A http://127.0.0.1:8080/auth/v1.0 -U test:tester -K testing delete test2
+--------------you can verify it by just list all the containers
+
+13.to delete containter's objects for example just type:
+swift -A http://127.0.0.1:8080/auth/v1.0 -U test:tester -K testing delete test1 home/sophia/test.c
+-----------------home/sophia/test.c is just the object of container test1
+
+14.if u want to delete all of the containers, just use such command:
+swift -A http://127.0.0.1:8080/auth/v1.0 -U test:tester -K testing delete -a
+
+15.functional tests: (it will first delete everything in the configured accounts)
+./.functests   ------------the result is the same as unittests.
+
+16. probe tests:(such tests will reset your environment as they call resetswift for each test)
+./.probetests
+
+
+??????????????the questions are i actually don't know the final aims of the functional and probe tests.????????/
+
+
