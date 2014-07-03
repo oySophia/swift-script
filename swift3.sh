@@ -30,4 +30,4 @@ cd -
 #pip install -U xattr
 
 echo "****************install swift's test dependencies********************************"
-pip install -r swift/test-requirements.txt
+pip install -r $HOME/swift/test-requirements.txt
