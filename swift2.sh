@@ -7,9 +7,9 @@ if [ -e /srv ] ; then
 	echo "the file /srv exist!"
 else
 	mkdir /srv
-	truncate -s 10GB /srv/swift-disk
-	mkfs.xfs /srv/swift-disk
 fi
+truncate -s 10GB /srv/swift-disk
+mkfs.xfs /srv/swift-disk
 
 echo "******************edit /etc/fstab********************************"
 #if verify if it's existing

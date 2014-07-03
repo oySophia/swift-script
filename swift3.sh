@@ -2,7 +2,11 @@
 
 #getting the code
 echo "****************get the python-swiftclient and install it******************************"
-cd $HOME; git clone https://github.com/openstack/python-swiftclient.git
+if [ -e $HOME/python-swiftclient ]; then
+	echo "already git the python-swiftclient.git"
+else
+	cd $HOME; git clone https://github.com/openstack/python-swiftclient.git
+fi
 
 echo "*****************some may get wrong in such step, be careful
 and if it is wrong, please refer to my blog
@@ -12,7 +16,11 @@ python setup.py develop
 cd -
 
 echo "****************get the swift and install it**********************************************"
-git clone https://github.com/openstack/swift.git
+if [ -e $HOME/swift ]; then
+	echo "already git the swift.git"
+else
+	git clone https://github.com/openstack/swift.git
+fi
 
 cd $HOME/swift
 python setup.py develop
@@ -22,4 +30,4 @@ cd -
 #pip install -U xattr
 
 echo "****************install swift's test dependencies********************************"
-sudo pip install -r swift/test-requirements.txt
+pip install -r swift/test-requirements.txt
